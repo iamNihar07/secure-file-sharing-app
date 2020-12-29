@@ -1,4 +1,5 @@
 # SPPP - Secure Programming Plus Plus
+- Visit Live Deployment at [Secure File Sharing App](http://spppcse4382uta-env.eba-wqpkkdht.us-east-1.elasticbeanstalk.com/)
 - A responsive Bootstrap web interface to allow multiple, concurrent users to securely share files with other authenticated users using AWS S3 on Elastic Beanstalk
 - Incorporated security measures to prevent Buffer Overflows, XSS, Session Hijack attacks, passwords and authentication attacks, and such well-known vulnerabilities in the OWASP
 - Built with NodeJS using:
