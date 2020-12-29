@@ -1,0 +1,117 @@
+<%- include ("../partials/header") %>
+<%var index=0;%>
+
+<div class="container">
+     
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h3>Administrative Controls</h3>                      
+            <hr class="mb-4">
+        </div>
+    </div>         
+        
+
+    <div class="row display-flex">
+        <div class="d-flex w-100">
+            <h4 class="mx-auto font-weight-bold">User Management</em></h4>
+        </div>
+        
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col" class="text-center">#</th>
+                <th scope="col" class="text-center">Actual Name</th>
+                <th scope="col" class="text-center">UserName</th>
+                <th scope="col" class="text-center">Active</th>
+                <th scope="col" class="text-center">Admin Privilleges</th>
+                <th scope="col" class="text-center">Profile</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(function(user){ %>
+                    <tr>
+                        <th scope="row" class="text-center"><%=++index%></th>
+                        <td class="text-center"><%=user.actualName%></td>
+                        <td class="text-center"><%=user.username%></td>
+                        <% if(user.isActive){%>
+                            <td class="text-center">Yes</td>
+                        <%}else{%>
+                            <td class="text-center">No</td>
+                        <%}%>
+                        <% if(user.isAdmin){%>
+                            <td class="text-center">Yes</td>
+                        <%}else{%>
+                            <td class="text-center">No</td>
+                        <%}%>
+                        <td class="text-center"><a class="btn btn-sm btn-info" href="/admin/<%=user._id%>">View/Edit</a></td>
+                    </tr>
+                <%})%>
+            </tbody>
+        </table>
+    </div>
+
+    <%index=0;%>
+    <hr class="mb-4">
+    <div class="row display-flex">
+        <div class="d-flex w-100">
+            <h4 class="mx-auto font-weight-bold">Group Management</em></h4>
+        </div>
+        
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col" class="text-center">#</th>
+                <th scope="col" class="text-center">Group Name</th>
+                <th scope="col" class="text-center">Active</th>
+                <th scope="col" class="text-center">Details</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% groups.forEach(function(group){ %>
+                    <tr>
+                        <th scope="row" class="text-center"><%=++index%></th>
+                        <td class="text-center"><%=group.groupName%></td>
+                        <% if(group.isActive){%>
+                            <td class="text-center">Yes</td>
+                        <%}else{%>
+                            <td class="text-center">No</td>
+                        <%}%>
+                        <td class="text-center"><a class="btn btn-sm btn-info" href="/admin/groups/<%=group._id%>">View/Edit</a></td>
+                    </tr>
+                <%})%>
+            </tbody>
+        </table>
+    </div>
+
+    <hr class="mb-4">
+    <div class="row display-flex">
+        <div class="d-flex w-100">
+            <h4 class="mx-auto font-weight-bold">Item Size Management</em></h4>
+        </div>
+        <div class="col-xs-12 col-md-12 col-lg-12 align-items-center">
+            <form action="/admin/" method="POST">
+                <div class="form-group row">
+                    <div class="col-sm-6">
+
+                    </div>
+                    <label for="price" class="col-sm-3 col-form-label">Individual File Limit Size:</label>
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            <input class="form-control text-center" type="number" value="<%=fileLimitSize%>" name="itemSize" min="1" max= "10" step="1" id="price">
+                            <div class="input-group-append">
+                                <span class="input-group-text" id="basic-addon2">MB</span>
+                            </div>
+                        </div>
+                    </div>                      
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-sm btn-primary pull-right">Submit!</button>
+                </div>
+            </form>
+        </div>
+
+</div>
+
+
+<%- include ("../partials/footer") %>

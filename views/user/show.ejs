@@ -1,0 +1,95 @@
+<%- include ("../partials/header") %>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12 text-center mb-3">
+            <h1>Profile Details for: <%=user.username%></h1>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <form action="/home" method="GET">
+                <div class="form-group row">
+                    <label for="actualname" class="col-sm-6 col-form-label ">Actual Name:</label>
+                    <div class="col-sm-6 user-div">
+                        <input type="text" readonly class="form-control-plaintext" id="actualname" value="<%=user.actualName%>">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="username" class="col-sm-6 col-form-label">User Name:</label>
+                    <div class="col-sm-6">
+                        <input type="text" readonly class="form-control-plaintext" id="username" value="<%=user.username%>">
+                    </div>
+                </div>
+                <fieldset class="form-group">
+                    <div class="row">
+                      <legend class="col-form-label col-sm-6 pt-0">Active:</legend>
+                      <div class="col-sm-6">
+                        <div class="form-check">
+                            <%if(user.isActive){%>
+                            <%}else{%>
+                                <input class="form-check-input" type="radio" name="isActive" id="gridRadios1" value="no" checked>
+                                <label class="form-check-label" for="gridRadios1">
+                                    No
+                                </label>
+                            <%}%>
+                        </div>
+                        <div class="form-check">
+                            <%if(user.isActive){%>
+                                <input class="form-check-input" type="radio" name="isActive" id="gridRadios2" value="yes" checked>
+                                <label class="form-check-label" for="gridRadios2">
+                                    Yes
+                                </label>
+                            <%}else{%>
+                            <%}%>
+                        </div>
+                      </div>
+                    </div>
+                </fieldset>
+                <fieldset class="form-group">
+                    <div class="row">
+                      <legend class="col-form-label col-sm-6 pt-0">Admin:</legend>
+                      <div class="col-sm-6">
+                        <div class="form-check">
+                            <%if(user.isAdmin){%>
+                            <%}else{%>
+                            <input class="form-check-input" type="radio" name="isAdmin" id="gridRadios1" value="no" checked>
+                            <label class="form-check-label" for="gridRadios1">
+                                No
+                            </label>
+                            <%}%>
+                        </div>
+                        <div class="form-check">
+                            <%if(user.isAdmin){%>
+                                <input class="form-check-input" type="radio" name="isAdmin" id="gridRadios2" value="yes" checked>
+                                <label class="form-check-label" for="gridRadios2">
+                                    Yes
+                                </label>
+                            <%}else{%>
+                            <%}%>
+                        </div>
+                      </div>
+                    </div>
+                </fieldset>
+                Groups you're part of:
+                <div class="form-group">
+                    <% groups.forEach(function(group){ %>
+                    <div class="form-check form-check-inline">
+                        <%if(group.groupName==="default" || user.groups.includes(group._id)){%>
+                            <input type="checkbox" name="<%=group.groupName%>" id="<%=group.groupName%>" value="yes" checked/>
+                            <label for="<%=group.groupName%>"><%=group.groupName%></label>
+                        <%}else{%>
+                        <%}%>
+                    </div>
+                    <% }); %>
+                </div>
+                <div class="form-group">
+                    <button class="form-control btn btn-primary" >Go Back</button>
+                </div>                
+            </form>
+        </div>
+    </div>
+
+    
+</div>
+
+
+<%- include ("../partials/footer") %>

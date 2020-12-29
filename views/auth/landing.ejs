@@ -1,0 +1,15 @@
+<%- include ("../partials/header") %>
+<div class="container justify-content-center text-center">
+        <h1 class="mb-4">Welcome to "SPPP" </h1>
+
+        <h3>
+            <%if(currentUser){%>
+                <a class="btn btn-lg btn-primary" href="/logout">Log out</a> if done.</h2>
+            <%}else{%>
+                <a class="btn btn-lg btn-primary" href="/login">Login</a> / <a class="btn btn-lg btn-primary" href="/register">Sign up</a> to view content. <br>
+            <%}%>
+        </h3>
+            
+</div>
+
+<%- include ("../partials/footer") %>

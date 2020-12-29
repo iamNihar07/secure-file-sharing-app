@@ -1,0 +1,49 @@
+<%- include ("../partials/header") %>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12 text-center mb-3">
+            <h1>Sign Up</h1>
+            <div class>
+                or <a href="/login" class="btn-sm btn-primary">Log in</a>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <form action="/register" method="POST">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="actualName" placeholder="Actual Name">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="username" placeholder="username/login name">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" name="password" placeholder="password">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" name="conf_password" placeholder="confirm password">
+                </div>
+                Select the User Groups:
+                <div class="form-group">
+                    <% groups.forEach(function(group){ %>
+                    <div class="form-check form-check-inline">
+                        <%if(group.isActive){%>
+                            <%if(group.groupName==="default"){%>
+                                <input type="checkbox" name="<%=group.groupName%>" id="<%=group.groupName%>" value="yes" checked/>
+                            <%}else{%>
+                                <input type="checkbox" name="<%=group.groupName%>" id="<%=group.groupName%>" value="yes"/>
+                            <%}%>
+                            <label for="<%=group.groupName%>"><%=group.groupName%></label>
+                        <%}%>
+                    </div>
+                    <% }); %>
+                </div>
+                <div class="form-group">
+                    <button class="form-control btn btn-primary" >Sign Up</button>
+                </div>                
+            </form>
+        </div>
+    </div>    
+</div>
+
+
+<%- include ("../partials/footer") %>

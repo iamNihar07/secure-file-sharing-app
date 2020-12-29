@@ -1,0 +1,21 @@
+<%- include ("../partials/header") %>
+
+<div class="container">
+    <div class="pull-right">
+        <a class="btn btn-primary" href="/groups/new">New Group</a>
+    </div>
+       
+    <h4>Group Lists:</h4>
+    <ul>
+        <%groups.forEach(function(group){%>
+            <%if(group.isActive){%>
+                <li style="line-height: 1em;"><a href="/groups/<%=group._id%>"><%=group.groupName%></a></li>
+            <%}%>
+        <%})%>
+    </ul>
+
+
+</div>
+
+
+<%- include ("../partials/footer") %>

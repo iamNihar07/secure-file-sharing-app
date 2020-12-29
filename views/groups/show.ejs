@@ -1,0 +1,41 @@
+<%- include ("../partials/header") %>
+
+<div class="container">
+
+    <h3>Group: <a href="#"><%=group.groupName%></a></h3>
+    <hr class="mb-4">
+    <%var flag=false;%>
+    <% items.forEach(function(item){%>
+        <%item.groups.forEach(function(group1){%>
+            <% if(group._id.equals(group1)){%>
+                <%flag=true;%>
+                <div class="col-lg-12 col-md-12 col-sm-12 mb-4 d-flex align-items-stretch">
+                    <div class="card index_pg w-100">
+                        <div class="card-body">
+                            <div class="pull-right">
+                                <%=item.createdAt.toISOString().slice(0,10)%>
+                            </div>
+                        <h5 class="card-title"><%= item.name%></h5>
+                        <hr>
+                        <p class="card-text mb-0">Uploaded by: <span class="font-weight-bold"><%=item.creator.username%></span>, <%= moment(item.createdAt).fromNow() %></p>
+                        <p class="card-text mb-0"><span class="font-italic"><%=item.description.substring(0,100) %></span>...</p>                  
+                        <div class="pull-right mt-0">
+                            <a href="/home/<%= item._id%>" class="btn btn-primary btn-sm mt-0">View  <i class="fa fa-info-circle"></i></a>
+                        </div>
+                                            
+                        </div>
+                    </div>
+                </div>
+            <%}%>
+        <%})%>
+    <%})%>  
+    
+    <%if(!flag){%>
+        <h4>No Items under this group yet.</h4>
+    <%}%>
+        
+
+</div>
+
+
+<%- include ("../partials/footer") %>

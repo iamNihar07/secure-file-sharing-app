@@ -1,0 +1,52 @@
+<%- include ("../partials/header") %>
+
+<div class="container">
+    <div class="col-md-12">
+        <div class="card mb-3">
+            <div class="card-body">
+                
+                <h5 class="float-right"><%= item.createdAt.toISOString().slice(0,10) %></h5>
+                <h3 class="card-title"><a href="<%=item.url%>"><%= item.name%></a></h3>
+                <p>
+                    <em>Uploaded by: <%= item.creator.username %>, <%= moment(item.createdAt).fromNow() %></em><br>
+                    <em>Last Accessed: <%= moment(item.lastAccess).fromNow() %></em>
+                </p>
+                <hr>
+                <p class="card-text">
+                <em><%=item.description%></em>
+                </p>
+                <%if(item.groups.length!=0){%>
+                    Groups:
+                    <ul>
+                    <%item.groups.forEach(function(group){ %>
+                        <%if(group.isActive){%>
+                            <li><%=group.groupName%></li>
+                        <%}%>
+                    <%}); %>                           
+                    </ul>   
+                    <%}%> 
+                <div class="mb-1">
+                    File Type: <%=item.mimeType%>
+                </div>
+                <a class="btn btn-info btn-sm mb-2" href="<%=item.url%>" download>Download "<%=item.fileName%>"</a>
+                <% if(currentUser && (item.creator.id.equals(currentUser._id)|| currentUser.isAdmin)){ //check if currentUser exists and if he owns the item%>
+                    <a class="btn btn-warning btn-sm pull-right" href="/home/<%= item._id %>/edit">Edit</a>
+                    <form class="delete-form pull-right mr-2" action="/home/<%= item._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                <% } %>
+                
+                <%if (item.mimeType.includes("image")){%>
+                <img src="<%=item.url%>" class="card-img-top mt-3" alt="<%=item.name%>">
+                <%}else if(item.mimeType.includes("video")){%>
+                    <video autoplay loop muted inline  class="card-img-top mt-3">
+                        <source src="<%=item.url%>" type="<%=item.mimeType%>">
+                    </video>
+                <%}%>
+            </div>            
+        </div>
+
+        <a href="/home" class="btn btn-info">Go Back</a>
+</div>
+
+<%- include ("../partials/footer") %>

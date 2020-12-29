@@ -1,0 +1,31 @@
+<%- include ("../partials/header") %>
+
+<div class="container">
+
+    <div class="row justify-content-center">
+        <div class="col-md-12 text-center mb-3">
+            <h1>Create a new group</h1>
+        </div>
+        <div class="col-xs-12 col-md-8 col-lg-6">
+            <form action="/groups/" method="POST">
+                <div class="form-group row">
+                    <label for="name" class="col-sm-3 col-form-label">Group Name:</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" placeholder="group name" name="name" id="name">
+                    </div>                    
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block">Submit!</button>
+                </div>                
+            </form>
+
+            <a class="btn btn-sm btn-info" href="/home">Go Back</a>
+        </div>
+
+        
+
+    </div>  
+
+</div>
+
+<%- include ("../partials/footer") %>
